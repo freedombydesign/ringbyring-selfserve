@@ -61,10 +61,10 @@ export function BusinessBasicsStep({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-1">
-          Tell Sarah about your business
+          Tell us about your business
         </h2>
         <p className="text-sm text-gray-500">
-          This is how Sarah will greet callers and understand your industry.
+          This is how RingByRing will greet callers and understand your industry.
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export function BusinessBasicsStep({
           <p className="mt-1 text-sm text-red-600">{errors.business_name.message}</p>
         )}
         <p className="mt-1 text-xs text-gray-500">
-          Sarah will say: &ldquo;[Business Name], this is Sarah speaking...&rdquo;
+          We&apos;ll answer: &ldquo;Thank you for calling [Business Name]...&rdquo;
         </p>
       </div>
 
@@ -112,7 +112,7 @@ export function BusinessBasicsStep({
           <p className="mt-1 text-sm text-red-600">{errors.business_phone.message}</p>
         )}
         <p className="mt-1 text-xs text-gray-500">
-          The number you want Sarah to cover. You&apos;ll forward this to Sarah later.
+          The number you want covered. You&apos;ll forward this to RingByRing later.
         </p>
       </div>
 
@@ -140,7 +140,7 @@ export function BusinessBasicsStep({
           <p className="mt-1 text-sm text-red-600">{errors.industry.message}</p>
         )}
         <p className="mt-1 text-xs text-gray-500">
-          Sarah uses industry-specific language and protocols.
+          RingByRing uses industry-specific language and protocols.
         </p>
       </div>
 

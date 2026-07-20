@@ -38,11 +38,11 @@ export async function createCheckoutSession({
     success_url: successUrl,
     cancel_url: cancelUrl,
     metadata: {
-      product: 'sarah_ai_selfserve',
+      product: 'ringbyring_selfserve',
     },
     subscription_data: {
       metadata: {
-        product: 'sarah_ai_selfserve',
+        product: 'ringbyring_selfserve',
       },
     },
   });

@@ -1,5 +1,5 @@
 // ===========================================
-// Sarah AI Self-Serve Type Definitions
+// RingByRing Self-Serve Type Definitions
 // ===========================================
 
 export interface Customer {
@@ -21,11 +21,11 @@ export interface BusinessConfig {
   business_phone: string; // The number to cover (customer's existing line)
   industry: Industry;
 
-  // Hours - when Sarah answers
+  // Hours - when RingByRing answers
   business_hours: BusinessHours;
   coverage_mode: 'after_hours' | 'overflow' | 'always' | 'custom';
 
-  // Sarah's knowledge base
+  // RingByRing's knowledge base
   services: Service[];
   qa_pairs: QAPair[];
 
@@ -101,7 +101,7 @@ export interface CallLog {
 }
 
 export interface TranscriptEntry {
-  speaker: 'sarah' | 'caller';
+  speaker: 'ringbyring' | 'caller';
   text: string;
   timestamp: number;
 }

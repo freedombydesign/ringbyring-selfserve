@@ -41,10 +41,10 @@ export function BusinessHoursStep({
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-1">
-          When should Sarah answer?
+          When should we answer?
         </h2>
         <p className="text-sm text-gray-500">
-          Set your business hours so Sarah knows when to take over.
+          Set your business hours so RingByRing knows when to take over.
         </p>
       </div>
 
@@ -56,9 +56,9 @@ export function BusinessHoursStep({
 
         <div className="space-y-2">
           {[
-            { value: 'after_hours', label: 'After Hours Only', desc: 'Sarah answers when you\'re closed' },
-            { value: 'overflow', label: 'Overflow', desc: 'Sarah answers if you don\'t pick up' },
-            { value: 'always', label: 'Always On', desc: 'Sarah answers all calls 24/7' },
+            { value: 'after_hours', label: 'After Hours Only', desc: 'RingByRing answers when you\'re closed' },
+            { value: 'overflow', label: 'Overflow', desc: 'RingByRing answers if you don\'t pick up' },
+            { value: 'always', label: 'Always On', desc: 'RingByRing answers all calls 24/7' },
           ].map((mode) => (
             <label
               key={mode.value}

@@ -12,11 +12,11 @@ import { ProgressBar } from '@/components/onboarding/ProgressBar';
 import type { OnboardingState, BusinessConfig } from '@/types';
 
 const STEPS = [
-  { id: 1, title: 'Business Basics', description: 'Tell Sarah about your business' },
-  { id: 2, title: 'Business Hours', description: 'When should Sarah answer?' },
-  { id: 3, title: 'Services & FAQ', description: "What Sarah needs to know" },
+  { id: 1, title: 'Business Basics', description: 'Tell us about your business' },
+  { id: 2, title: 'Business Hours', description: 'When should we answer?' },
+  { id: 3, title: 'Services & FAQ', description: "What we need to know" },
   { id: 4, title: 'Notifications', description: 'Where to send leads' },
-  { id: 5, title: 'Connect Phone', description: 'Forward calls to Sarah' },
+  { id: 5, title: 'Connect Phone', description: 'Forward calls to RingByRing' },
   { id: 6, title: 'Test & Go Live', description: 'Verify everything works' },
 ];
 
@@ -127,7 +127,7 @@ export default function OnboardingPage() {
       <header className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <h1 className="text-xl font-semibold text-gray-900">
-            Set Up Sarah AI
+            Set Up RingByRing
           </h1>
           <p className="text-sm text-gray-500">
             {currentStepInfo?.description}

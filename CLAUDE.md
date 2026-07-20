@@ -1,23 +1,23 @@
-# Sarah AI Self-Serve — Project Context
+# RingByRing Self-Serve — Project Context
 
 ## Purpose
 
-Transform Sarah AI from a done-for-you setup ($1,500–$2,500 manual) into a **true self-serve SaaS** where a customer can buy, configure, and go live without any human involvement.
+Transform RingByRing from a done-for-you setup ($1,500–$2,500 manual) into a **true self-serve SaaS** where a customer can buy, configure, and go live without any human involvement.
 
-**The one job:** Close the gap between "customer clicks Buy" and "Sarah is answering their phone" with zero human touch.
+**The one job:** Close the gap between "customer clicks Buy" and "RingByRing is answering their phone" with zero human touch.
 
 ---
 
 ## Architecture
 
-### This Project (sarah-ai-selfserve)
+### This Project (ringbyring-selfserve)
 - **Next.js 14+ App Router** — self-serve onboarding, customer dashboard, billing
 - **Supabase** — auth, customer records, business config, call logs
 - **Stripe** — checkout, subscriptions, billing portal
 - **Twilio API** — programmatic phone number provisioning
 
 ### Existing Infrastructure (DO NOT REBUILD)
-- **Sarah AI Receptionist** (`/GitHub/Sarah-AI-Receptionist`)
+- **RingByRing Receptionist** (`/GitHub/Sarah-AI-Receptionist`)
   - Pipecat server (Python/FastAPI) handles actual voice calls
   - Gemini Live API for conversation
   - Industry prompts for context injection
@@ -39,9 +39,9 @@ Transform Sarah AI from a done-for-you setup ($1,500–$2,500 manual) into a **t
    - Provision Twilio number via API
    - Write config to database
    - Associate number with customer config
-5. **Connect Phone** — Customer forwards their line to Sarah's number
+5. **Connect Phone** — Customer forwards their line to RingByRing's number
    - Carrier-specific instructions (Verizon, AT&T, T-Mobile, etc.)
-6. **Test & Go Live** — Test call button, confirm Sarah answers correctly
+6. **Test & Go Live** — Test call button, confirm RingByRing answers correctly
 
 ---
 
@@ -74,8 +74,8 @@ supabase/
 ## Database Schema
 
 - **customers** — Links auth.users to Stripe, tracks subscription
-- **business_configs** — All config Sarah uses on calls (one per customer)
-- **call_logs** — Records of calls Sarah handled
+- **business_configs** — All config RingByRing uses on calls (one per customer)
+- **call_logs** — Records of calls RingByRing handled
 - **onboarding_progress** — Wizard state for resumability
 
 Key function: `get_config_by_twilio_number(phone)` — Used by call routing to load customer context by dialed number.
@@ -124,7 +124,7 @@ See `.env.example` for all required variables:
 
 ## Compliance Notes
 
-- **A2P 10DLC** — Required if Sarah sends SMS. Defer by making v1 email-only.
+- **A2P 10DLC** — Required if RingByRing sends SMS. Defer by making v1 email-only.
 - **Call recording consent** — Two-party states need disclosure in greeting.
 - **Twilio ToS** — Verify account configured for programmatic provisioning.
 
@@ -132,4 +132,4 @@ See `.env.example` for all required variables:
 
 ## Definition of Done
 
-Ruth sends a stranger to the landing page, walks away, and that stranger ends up with Sarah answering their forwarded phone — Ruth never opens her laptop.
+Ruth sends a stranger to the landing page, walks away, and that stranger ends up with RingByRing answering their forwarded phone — Ruth never opens her laptop.

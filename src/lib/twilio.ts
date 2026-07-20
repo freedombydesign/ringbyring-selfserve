@@ -39,7 +39,7 @@ export async function provisionPhoneNumber({
     voiceMethod: 'POST',
     statusCallback: `${process.env.NEXT_PUBLIC_APP_URL}/api/twilio/status`,
     statusCallbackMethod: 'POST',
-    friendlyName: `Sarah AI - ${customerId}`,
+    friendlyName: `RingByRing - ${customerId}`,
   });
 
   return {

@@ -15,7 +15,7 @@ export const CARRIER_INSTRUCTIONS: Record<string, CarrierInstructions> = {
     busy_code: '*90',
     deactivate_code: '*73',
     instructions: [
-      'Dial *71 followed by the Sarah number',
+      'Dial *71 followed by the RingByRing number',
       'Example: *71 555-123-4567',
       'Wait for confirmation tone',
       'To deactivate: dial *73',
@@ -27,7 +27,7 @@ export const CARRIER_INSTRUCTIONS: Record<string, CarrierInstructions> = {
     busy_code: '*90',
     deactivate_code: '*93',
     instructions: [
-      'Dial *92 followed by the Sarah number',
+      'Dial *92 followed by the RingByRing number',
       'Example: *92 555-123-4567',
       'Wait for confirmation tone',
       'To deactivate: dial *93',
@@ -39,7 +39,7 @@ export const CARRIER_INSTRUCTIONS: Record<string, CarrierInstructions> = {
     busy_code: '**67*',
     deactivate_code: '##004#',
     instructions: [
-      'Dial **004* followed by Sarah number and #',
+      'Dial **004* followed by RingByRing number and #',
       'Example: **004*5551234567#',
       'Wait for confirmation message',
       'To deactivate: dial ##004#',
@@ -54,7 +54,7 @@ export const CARRIER_INSTRUCTIONS: Record<string, CarrierInstructions> = {
       'Call your carrier customer service',
       'Ask to set up "conditional call forwarding"',
       'Request forwarding for: no answer, busy, and unreachable',
-      'Provide them the Sarah number to forward to',
+      'Provide them the RingByRing number to forward to',
     ],
   },
 };

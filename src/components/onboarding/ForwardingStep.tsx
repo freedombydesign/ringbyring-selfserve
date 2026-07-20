@@ -25,7 +25,7 @@ export function ForwardingStep({
 
   // This would be the provisioned Twilio number from the previous step
   // In real implementation, this comes from the API after provisioning
-  const sarahNumber = data.twilio_number || '(555) 987-6543';
+  const ringByRingNumber = data.twilio_number || '(555) 987-6543';
 
   const instructions = CARRIER_INSTRUCTIONS[selectedCarrier];
 
@@ -38,14 +38,14 @@ export function ForwardingStep({
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-1">
-          Connect your phone to Sarah
+          Connect your phone to RingByRing
         </h2>
         <p className="text-sm text-gray-500">
-          Set up call forwarding so Sarah answers when you can&apos;t.
+          Set up call forwarding so RingByRing answers when you can&apos;t.
         </p>
       </div>
 
-      {/* Sarah's Number */}
+      {/* RingByRing's Number */}
       <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-emerald-100 rounded-full">
@@ -53,10 +53,10 @@ export function ForwardingStep({
           </div>
           <div>
             <p className="text-sm text-emerald-800 font-medium">
-              Sarah&apos;s Number
+              Your RingByRing Number
             </p>
             <p className="text-lg font-mono text-emerald-900">
-              {sarahNumber}
+              {ringByRingNumber}
             </p>
           </div>
         </div>
@@ -109,7 +109,7 @@ export function ForwardingStep({
             <p className="text-sm text-gray-600 mb-1">Quick code to dial:</p>
             <p className="font-mono text-lg text-gray-900">
               {instructions.no_answer_code}
-              {sarahNumber.replace(/\D/g, '')}
+              {ringByRingNumber.replace(/\D/g, '')}
             </p>
           </div>
         )}
@@ -138,7 +138,7 @@ export function ForwardingStep({
         <div className="flex items-start gap-2 p-3 bg-amber-50 border border-amber-100 rounded-lg">
           <AlertCircle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
           <p className="text-sm text-amber-800">
-            Make sure to set up forwarding or Sarah won&apos;t receive your calls.
+            Make sure to set up forwarding or RingByRing won&apos;t receive your calls.
           </p>
         </div>
       )}

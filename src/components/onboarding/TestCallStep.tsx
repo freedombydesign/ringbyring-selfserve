@@ -41,7 +41,7 @@ export function TestCallStep({
           Test your setup
         </h2>
         <p className="text-sm text-gray-500">
-          Let&apos;s make sure Sarah answers your calls correctly.
+          Let&apos;s make sure RingByRing answers your calls correctly.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export function TestCallStep({
               Ready to test?
             </h3>
             <p className="text-sm text-gray-500 mb-6 max-w-sm mx-auto">
-              Click below to receive a test call. Sarah will answer and greet you
+              Click below to receive a test call. RingByRing will answer and greet you
               as &ldquo;{data.business_name || 'your business'}&rdquo;.
             </p>
             <button
@@ -94,7 +94,7 @@ export function TestCallStep({
               Calling you now...
             </h3>
             <p className="text-sm text-gray-500">
-              Your phone should ring any moment. Answer to hear Sarah!
+              Your phone should ring any moment. Answer to hear RingByRing!
             </p>
           </>
         )}
@@ -105,7 +105,7 @@ export function TestCallStep({
               <CheckCircle className="h-8 w-8 text-emerald-600" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
-              Sarah is ready!
+              RingByRing is ready!
             </h3>
             <p className="text-sm text-gray-500 mb-6">
               Everything looks good. Click below to go live.

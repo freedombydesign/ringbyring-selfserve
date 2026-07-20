@@ -70,10 +70,10 @@ export function ServicesStep({
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-1">
-          What does Sarah need to know?
+          What do we need to know?
         </h2>
         <p className="text-sm text-gray-500">
-          Add your services and common questions so Sarah can answer accurately.
+          Add your services and common questions so RingByRing can answer accurately.
         </p>
       </div>
 
@@ -129,7 +129,7 @@ export function ServicesStep({
           Common Questions (Optional)
         </label>
         <p className="text-xs text-gray-500 mb-3">
-          Add questions callers frequently ask and how Sarah should answer.
+          Add questions callers frequently ask and how RingByRing should answer.
         </p>
 
         <div className="space-y-4">
@@ -153,7 +153,7 @@ export function ServicesStep({
                 </button>
               </div>
               <textarea
-                placeholder="Answer Sarah should give..."
+                placeholder="Answer RingByRing should give..."
                 value={qa.answer}
                 onChange={(e) => updateQA(qa.id, 'answer', e.target.value)}
                 rows={2}

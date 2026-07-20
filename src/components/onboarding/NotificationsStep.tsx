@@ -46,10 +46,10 @@ export function NotificationsStep({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-1">
-          Where should Sarah send leads?
+          Where should we send leads?
         </h2>
         <p className="text-sm text-gray-500">
-          After each call, Sarah will send you the caller&apos;s info and message.
+          After each call, RingByRing will send you the caller&apos;s info and message.
         </p>
       </div>
 
@@ -96,7 +96,7 @@ export function NotificationsStep({
             focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
         />
         <p className="mt-1 text-xs text-gray-500">
-          Get a text when Sarah takes a message. Leave blank for email only.
+          Get a text when RingByRing takes a message. Leave blank for email only.
         </p>
       </div>
 

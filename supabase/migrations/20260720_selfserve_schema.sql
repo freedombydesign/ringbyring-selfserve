@@ -1,5 +1,5 @@
 -- ===========================================
--- Sarah AI Self-Serve Database Schema
+-- RingByRing Self-Serve Database Schema
 -- ===========================================
 -- This schema supports the self-serve onboarding flow:
 -- Signup -> Payment -> Config -> Provisioning -> Go Live
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS public.customers (
 
 -- ===========================================
 -- 2. BUSINESS CONFIG TABLE
--- Core configuration that Sarah uses on calls
+-- Core configuration that RingByRing uses on calls
 -- ===========================================
 CREATE TABLE IF NOT EXISTS public.business_configs (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -58,12 +58,12 @@ CREATE TABLE IF NOT EXISTS public.business_configs (
     }
   }'::jsonb,
 
-  -- When Sarah answers
+  -- When RingByRing answers
   coverage_mode TEXT NOT NULL DEFAULT 'after_hours' CHECK (coverage_mode IN (
     'after_hours', 'overflow', 'always', 'custom'
   )),
 
-  -- Sarah's knowledge base
+  -- RingByRing's knowledge base
   services JSONB DEFAULT '[]'::jsonb,
   qa_pairs JSONB DEFAULT '[]'::jsonb,
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS public.business_configs (
 
 -- ===========================================
 -- 3. CALL LOGS TABLE
--- Records of calls Sarah handled
+-- Records of calls RingByRing handled
 -- ===========================================
 CREATE TABLE IF NOT EXISTS public.call_logs (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
