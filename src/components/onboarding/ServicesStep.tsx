@@ -9,6 +9,7 @@ interface ServicesStepProps {
   onUpdate: (data: Partial<BusinessConfig>) => void;
   onNext: () => void;
   onBack: () => void;
+  isLoading?: boolean;
 }
 
 export function ServicesStep({
@@ -16,6 +17,7 @@ export function ServicesStep({
   onUpdate,
   onNext,
   onBack,
+  isLoading,
 }: ServicesStepProps) {
   const [services, setServices] = useState<Service[]>(
     data.services || [{ id: '1', name: '', description: '', duration_minutes: null, price: null }]
@@ -187,10 +189,11 @@ export function ServicesStep({
         <button
           type="button"
           onClick={handleContinue}
+          disabled={isLoading}
           className="flex-1 px-4 py-2 bg-emerald-600 text-white font-medium rounded-lg
-            hover:bg-emerald-700 transition-colors"
+            hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continue
+          {isLoading ? 'Saving...' : 'Continue'}
         </button>
       </div>
     </div>

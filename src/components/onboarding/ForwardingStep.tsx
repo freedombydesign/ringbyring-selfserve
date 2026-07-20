@@ -7,6 +7,7 @@ import type { BusinessConfig } from '@/types';
 
 interface ForwardingStepProps {
   data: Partial<BusinessConfig>;
+  twilioNumber: string | null;
   onUpdate: (data: Partial<BusinessConfig>) => void;
   onNext: () => void;
   onBack: () => void;
@@ -16,6 +17,7 @@ type Carrier = 'verizon' | 'att' | 'tmobile' | 'other';
 
 export function ForwardingStep({
   data,
+  twilioNumber,
   onUpdate,
   onNext,
   onBack,
@@ -23,9 +25,8 @@ export function ForwardingStep({
   const [selectedCarrier, setSelectedCarrier] = useState<Carrier>('verizon');
   const [confirmed, setConfirmed] = useState(false);
 
-  // This would be the provisioned Twilio number from the previous step
-  // In real implementation, this comes from the API after provisioning
-  const ringByRingNumber = data.twilio_number || '(555) 987-6543';
+  // Use the provisioned Twilio number
+  const ringByRingNumber = twilioNumber || data.twilio_number || 'Loading...';
 
   const instructions = CARRIER_INSTRUCTIONS[selectedCarrier];
 

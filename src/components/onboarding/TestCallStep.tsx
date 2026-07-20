@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, CheckCircle, Loader2, RefreshCw } from 'lucide-react';
+import { Phone, CheckCircle, Loader2, RefreshCw, AlertCircle } from 'lucide-react';
 import type { BusinessConfig } from '@/types';
 
 interface TestCallStepProps {
   data: Partial<BusinessConfig>;
+  twilioNumber: string | null;
   onComplete: () => void;
   onBack: () => void;
 }
@@ -14,24 +15,52 @@ type TestStatus = 'idle' | 'calling' | 'success' | 'failed';
 
 export function TestCallStep({
   data,
+  twilioNumber,
   onComplete,
   onBack,
 }: TestCallStepProps) {
   const [status, setStatus] = useState<TestStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleTestCall = async () => {
+    if (!data.business_phone) {
+      setErrorMessage('No business phone number configured');
+      setStatus('failed');
+      return;
+    }
+
     setStatus('calling');
+    setErrorMessage('');
 
-    // Simulate test call - in real implementation, this calls the API
-    // which triggers a call to the customer's forwarded line
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    try {
+      const res = await fetch('/api/twilio/test-call', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: data.business_phone,
+        }),
+      });
 
-    // For demo, randomly succeed/fail
-    setStatus('success');
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        // Wait a moment for the call to connect
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        setStatus('success');
+      } else {
+        setErrorMessage(result.error || 'Failed to initiate test call');
+        setStatus('failed');
+      }
+    } catch (error) {
+      console.error('Test call error:', error);
+      setErrorMessage('Failed to connect to server');
+      setStatus('failed');
+    }
   };
 
   const handleRetry = () => {
     setStatus('idle');
+    setErrorMessage('');
   };
 
   return (
@@ -55,6 +84,9 @@ export function TestCallStep({
           <div className="text-gray-500">Industry:</div>
           <div className="text-gray-900 capitalize">{data.industry || 'Not set'}</div>
 
+          <div className="text-gray-500">RingByRing Number:</div>
+          <div className="text-gray-900 font-mono">{twilioNumber || 'Not assigned'}</div>
+
           <div className="text-gray-500">Notifications:</div>
           <div className="text-gray-900">{data.notification_email || 'Not set'}</div>
         </div>
@@ -71,8 +103,9 @@ export function TestCallStep({
               Ready to test?
             </h3>
             <p className="text-sm text-gray-500 mb-6 max-w-sm mx-auto">
-              Click below to receive a test call. RingByRing will answer and greet you
-              as &ldquo;{data.business_name || 'your business'}&rdquo;.
+              Click below to receive a test call at{' '}
+              <span className="font-medium">{data.business_phone || 'your phone'}</span>.
+              RingByRing will answer and greet you as &ldquo;{data.business_name || 'your business'}&rdquo;.
             </p>
             <button
               onClick={handleTestCall}
@@ -116,11 +149,14 @@ export function TestCallStep({
         {status === 'failed' && (
           <>
             <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-              <Phone className="h-8 w-8 text-red-600" />
+              <AlertCircle className="h-8 w-8 text-red-600" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               Call didn&apos;t connect
             </h3>
+            {errorMessage && (
+              <p className="text-sm text-red-600 mb-2">{errorMessage}</p>
+            )}
             <p className="text-sm text-gray-500 mb-6">
               Make sure your forwarding is set up correctly and try again.
             </p>

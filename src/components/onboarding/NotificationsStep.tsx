@@ -17,6 +17,7 @@ interface NotificationsStepProps {
   onUpdate: (data: Partial<BusinessConfig>) => void;
   onNext: () => void;
   onBack: () => void;
+  isLoading?: boolean;
 }
 
 export function NotificationsStep({
@@ -24,6 +25,7 @@ export function NotificationsStep({
   onUpdate,
   onNext,
   onBack,
+  isLoading,
 }: NotificationsStepProps) {
   const {
     register,
@@ -125,10 +127,11 @@ export function NotificationsStep({
         </button>
         <button
           type="submit"
+          disabled={isLoading}
           className="flex-1 px-4 py-2 bg-emerald-600 text-white font-medium rounded-lg
-            hover:bg-emerald-700 transition-colors"
+            hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continue
+          {isLoading ? 'Provisioning your number...' : 'Continue'}
         </button>
       </div>
     </form>

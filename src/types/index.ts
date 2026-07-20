@@ -20,6 +20,7 @@ export interface BusinessConfig {
   business_name: string;
   business_phone: string; // The number to cover (customer's existing line)
   industry: Industry;
+  custom_greeting: string | null; // Optional custom greeting for calls
 
   // Hours - when RingByRing answers
   business_hours: BusinessHours;

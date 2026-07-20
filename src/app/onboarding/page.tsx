@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { BusinessBasicsStep } from '@/components/onboarding/BusinessBasicsStep';
 import { BusinessHoursStep } from '@/components/onboarding/BusinessHoursStep';
@@ -22,11 +22,69 @@ const STEPS = [
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+  const [twilioNumber, setTwilioNumber] = useState<string | null>(null);
   const [state, setState] = useState<OnboardingState>({
     currentStep: 1,
     completedSteps: [],
     data: {},
   });
+
+  // Load existing progress on mount
+  useEffect(() => {
+    async function loadProgress() {
+      try {
+        const res = await fetch('/api/onboarding/progress');
+        const data = await res.json();
+
+        if (res.status === 401) {
+          router.push('/auth/login');
+          return;
+        }
+
+        if (data.progress && data.config) {
+          // Restore state from saved progress
+          const completedSteps = data.progress.completed_steps || [];
+          const currentStep = data.progress.current_step || 1;
+
+          setState({
+            currentStep,
+            completedSteps,
+            data: {
+              business_name: data.config.business_name,
+              business_phone: data.config.business_phone,
+              industry: data.config.industry,
+              business_hours: data.config.business_hours,
+              coverage_mode: data.config.coverage_mode,
+              services: data.config.services,
+              qa_pairs: data.config.qa_pairs,
+              notification_email: data.config.notification_email,
+              notification_sms: data.config.notification_sms,
+              custom_greeting: data.config.custom_greeting,
+            },
+          });
+
+          // If they already have a Twilio number, save it
+          if (data.config.twilio_number) {
+            setTwilioNumber(data.config.twilio_number);
+          }
+
+          // If already live, redirect to dashboard
+          if (data.config.status === 'live') {
+            router.push('/dashboard');
+            return;
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load progress:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadProgress();
+  }, [router]);
 
   const currentStepInfo = STEPS.find((s) => s.id === state.currentStep);
 
@@ -37,12 +95,55 @@ export default function OnboardingPage() {
     }));
   };
 
-  const nextStep = () => {
-    setState((prev) => ({
-      ...prev,
-      currentStep: Math.min(prev.currentStep + 1, STEPS.length),
-      completedSteps: [...new Set([...prev.completedSteps, prev.currentStep])],
-    }));
+  // Save step and move to next
+  const saveAndNext = async () => {
+    setIsSaving(true);
+    try {
+      // Map step number to step name
+      const stepNames: Record<number, string> = {
+        1: 'business_basics',
+        2: 'business_hours',
+        3: 'services',
+        4: 'notifications',
+      };
+
+      const stepName = stepNames[state.currentStep];
+
+      if (stepName) {
+        // Save current step data
+        await fetch('/api/onboarding/save-step', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            step: stepName,
+            data: state.data,
+          }),
+        });
+      }
+
+      // After step 4, call complete to provision Twilio number
+      if (state.currentStep === 4 && !twilioNumber) {
+        const completeRes = await fetch('/api/onboarding/complete', {
+          method: 'POST',
+        });
+        const completeData = await completeRes.json();
+
+        if (completeData.config?.twilio_number) {
+          setTwilioNumber(completeData.config.twilio_number);
+        }
+      }
+
+      // Move to next step
+      setState((prev) => ({
+        ...prev,
+        currentStep: Math.min(prev.currentStep + 1, STEPS.length),
+        completedSteps: [...new Set([...prev.completedSteps, prev.currentStep])],
+      }));
+    } catch (error) {
+      console.error('Failed to save step:', error);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const prevStep = () => {
@@ -58,8 +159,16 @@ export default function OnboardingPage() {
     }
   };
 
-  const handleComplete = () => {
-    router.push('/dashboard');
+  const handleComplete = async () => {
+    try {
+      // Mark as live
+      await fetch('/api/twilio/go-live', {
+        method: 'POST',
+      });
+      router.push('/dashboard');
+    } catch (error) {
+      console.error('Failed to go live:', error);
+    }
   };
 
   const renderStep = () => {
@@ -69,7 +178,8 @@ export default function OnboardingPage() {
           <BusinessBasicsStep
             data={state.data}
             onUpdate={updateData}
-            onNext={nextStep}
+            onNext={saveAndNext}
+            isLoading={isSaving}
           />
         );
       case 2:
@@ -77,8 +187,9 @@ export default function OnboardingPage() {
           <BusinessHoursStep
             data={state.data}
             onUpdate={updateData}
-            onNext={nextStep}
+            onNext={saveAndNext}
             onBack={prevStep}
+            isLoading={isSaving}
           />
         );
       case 3:
@@ -86,8 +197,9 @@ export default function OnboardingPage() {
           <ServicesStep
             data={state.data}
             onUpdate={updateData}
-            onNext={nextStep}
+            onNext={saveAndNext}
             onBack={prevStep}
+            isLoading={isSaving}
           />
         );
       case 4:
@@ -95,16 +207,18 @@ export default function OnboardingPage() {
           <NotificationsStep
             data={state.data}
             onUpdate={updateData}
-            onNext={nextStep}
+            onNext={saveAndNext}
             onBack={prevStep}
+            isLoading={isSaving}
           />
         );
       case 5:
         return (
           <ForwardingStep
             data={state.data}
+            twilioNumber={twilioNumber}
             onUpdate={updateData}
-            onNext={nextStep}
+            onNext={saveAndNext}
             onBack={prevStep}
           />
         );
@@ -112,6 +226,7 @@ export default function OnboardingPage() {
         return (
           <TestCallStep
             data={state.data}
+            twilioNumber={twilioNumber}
             onComplete={handleComplete}
             onBack={prevStep}
           />
@@ -120,6 +235,14 @@ export default function OnboardingPage() {
         return null;
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

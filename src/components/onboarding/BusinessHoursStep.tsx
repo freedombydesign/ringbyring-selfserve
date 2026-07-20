@@ -7,6 +7,7 @@ interface BusinessHoursStepProps {
   onUpdate: (data: Partial<BusinessConfig>) => void;
   onNext: () => void;
   onBack: () => void;
+  isLoading?: boolean;
 }
 
 export function BusinessHoursStep({
@@ -14,6 +15,7 @@ export function BusinessHoursStep({
   onUpdate,
   onNext,
   onBack,
+  isLoading,
 }: BusinessHoursStepProps) {
   // TODO: Implement full hours picker
   // For now, a simplified version
@@ -107,10 +109,11 @@ export function BusinessHoursStep({
         <button
           type="button"
           onClick={handleContinue}
+          disabled={isLoading}
           className="flex-1 px-4 py-2 bg-emerald-600 text-white font-medium rounded-lg
-            hover:bg-emerald-700 transition-colors"
+            hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continue
+          {isLoading ? 'Saving...' : 'Continue'}
         </button>
       </div>
     </div>

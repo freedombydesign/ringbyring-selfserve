@@ -32,12 +32,14 @@ interface BusinessBasicsStepProps {
   data: Partial<BusinessConfig>;
   onUpdate: (data: Partial<BusinessConfig>) => void;
   onNext: () => void;
+  isLoading?: boolean;
 }
 
 export function BusinessBasicsStep({
   data,
   onUpdate,
   onNext,
+  isLoading,
 }: BusinessBasicsStepProps) {
   const {
     register,
@@ -148,11 +150,12 @@ export function BusinessBasicsStep({
       <div className="pt-4">
         <button
           type="submit"
+          disabled={isLoading}
           className="w-full px-4 py-2 bg-emerald-600 text-white font-medium rounded-lg
             hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500
-            focus:ring-offset-2 transition-colors"
+            focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continue
+          {isLoading ? 'Saving...' : 'Continue'}
         </button>
       </div>
     </form>
