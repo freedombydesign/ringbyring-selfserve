@@ -5,7 +5,7 @@ import type { Trade, City } from '@/types';
 
 interface DemoCTAProps {
   trade: Trade;
-  city: City;
+  city?: City;
   variant?: 'primary' | 'dark' | 'outline';
 }
 
@@ -18,7 +18,7 @@ export function DemoCTA({ trade, city, variant = 'primary' }: DemoCTAProps) {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'demo_call_click', {
         trade: trade.slug,
-        city: city.slug,
+        city: city?.slug,
       });
     }
 

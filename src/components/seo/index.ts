@@ -1,4 +1,5 @@
 export { TradeCityPage } from './TradeCityPage';
+export { TradePage } from './TradePage';
 export { DemoCTA, DemoAudioPlayer } from './DemoCTA';
 export {
   OrganizationSchema,
@@ -7,5 +8,6 @@ export {
   FAQSchema,
   BreadcrumbSchema,
   LocalServiceSchema,
+  TradeSchema,
   TradeCitySchema,
 } from './Schema';

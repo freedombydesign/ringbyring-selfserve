@@ -195,6 +195,64 @@ export function LocalServiceSchema({ trade, city }: { trade: Trade; city: City }
   );
 }
 
+// Schema for trade-only pages (without city)
+export function TradeSchema({ trade }: { trade: Trade }) {
+  const baseUrl = 'https://www.ringbyring.com';
+
+  // Combine trade FAQs with common FAQs
+  const allFaqs = [
+    ...trade.faqs,
+    { q: 'How much does RingByRing cost?', a: '$149/month flat rate, unlimited calls. No per-minute charges, no overage fees, no setup cost. Cancel anytime.' },
+    { q: 'How fast can I get set up?', a: 'Most businesses are live in 15 minutes. Sign up, tell us about your business, forward your number, and you\'re done.' },
+    { q: 'Does this replace my existing phone service?', a: 'No. You keep your current business number. You just forward calls to RingByRing when you can\'t answer — after hours, when you\'re busy, or all the time.' },
+  ];
+
+  const breadcrumbs = [
+    { name: 'Home', url: baseUrl },
+    { name: `${trade.display_name} Answering Service`, url: `${baseUrl}/${trade.slug}-answering-service` },
+  ];
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `${trade.display_name} Answering Service`,
+    provider: {
+      '@type': 'Organization',
+      name: 'RingByRing',
+      url: baseUrl,
+    },
+    description: `Professional AI answering service for ${trade.display_plural.toLowerCase()}. 24/7 call answering, appointment booking, and lead capture.`,
+    serviceType: 'Answering Service',
+    areaServed: {
+      '@type': 'Country',
+      name: 'Canada',
+    },
+    audience: {
+      '@type': 'Audience',
+      audienceType: trade.display_plural,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '149',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      priceValidUntil: '2027-12-31',
+      url: `${baseUrl}/${trade.slug}-answering-service`,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <FAQSchema faqs={allFaqs} />
+      <BreadcrumbSchema items={breadcrumbs} />
+    </>
+  );
+}
+
 // Combined schema for trade/city pages
 export function TradeCitySchema({ trade, city }: { trade: Trade; city: City }) {
   const baseUrl = 'https://www.ringbyring.com';
