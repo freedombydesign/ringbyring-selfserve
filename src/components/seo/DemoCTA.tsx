@@ -9,9 +9,8 @@ interface DemoCTAProps {
   variant?: 'primary' | 'dark' | 'outline';
 }
 
-// Demo phone number - this would be configured per deployment
-// In production, this calls RingByRing and the prospect hears the AI answer
-const DEMO_PHONE_NUMBER = '+18005551234'; // Replace with actual demo line
+// Demo phone number - prospects call this to hear RingByRing answer live
+const DEMO_PHONE_NUMBER = '+13479192658';
 
 export function DemoCTA({ trade, city, variant = 'primary' }: DemoCTAProps) {
   const handleDemoCall = () => {
