@@ -4,6 +4,7 @@ import { Phone, CheckCircle, Clock, DollarSign, MapPin, ChevronDown } from 'luci
 import { useState } from 'react';
 import type { Trade, City } from '@/types';
 import { DemoCTA } from './DemoCTA';
+import metaData from '@/data/meta.json';
 
 interface TradeCityPageProps {
   trade: Trade;
@@ -27,7 +28,7 @@ export function TradeCityPage({ trade, city }: TradeCityPageProps) {
 
           {/* Main headline */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-            AI Receptionist for {trade.display_plural} in {city.display_name}
+            {trade.display_name} Answering Service in {city.display_name}
           </h1>
 
           {/* Pain headline */}
@@ -81,35 +82,15 @@ export function TradeCityPage({ trade, city }: TradeCityPageProps) {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-emerald-700 font-bold text-xl">1</span>
+            {metaData.how_it_works.map((step) => (
+              <div key={step.step} className="text-center">
+                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-emerald-700 font-bold text-xl">{step.step}</span>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">{step.title}</h3>
+                <p className="text-gray-600 text-sm">{step.body}</p>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Sign up in 15 minutes</h3>
-              <p className="text-gray-600 text-sm">
-                Tell us about your business, services, and how you want calls handled. No tech skills needed.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-emerald-700 font-bold text-xl">2</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Forward your calls</h3>
-              <p className="text-gray-600 text-sm">
-                Set up call forwarding from your business line. We give you the exact codes to dial.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-emerald-700 font-bold text-xl">3</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Never miss a lead</h3>
-              <p className="text-gray-600 text-sm">
-                RingByRing answers, captures caller details, and sends you the lead instantly.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>

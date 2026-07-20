@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "description": "Global template defaults and shared copy. Template merges meta + trades[t] + cities[c] to render each page.",
+    "last_updated": "2026-07"
+  },
+  "url_pattern": "/[trade-slug]-answering-service/[city-slug]",
+  "title_pattern": "{trade} Answering Service in {city} — Never Miss a Call Again",
+  "h1_pattern": "{trade} Answering Service in {city}",
+  "meta_description_pattern": "RingByRing answers your {city} {trade} calls 24/7 — after hours, weekends, and overflow. Never send another caller to voicemail. $149/mo, $0 setup, live in 15 minutes.",
+  "demo_cta": {
+    "label": "Call RingByRing now and hear it answer",
+    "phone_number": "+13479192658",
+    "phone_display": "(347) 919-2658",
+    "subtext": "30 seconds. Hear exactly what your callers would hear."
+  },
+  "how_it_works": [
+    { "step": 1, "title": "Forward your number", "body": "Set your existing business line to forward to RingByRing when you can't pick up — after hours, when you're busy, or always. Takes a few minutes." },
+    { "step": 2, "title": "RingByRing answers", "body": "Callers reach a natural, professional voice that knows your business, instead of voicemail." },
+    { "step": 3, "title": "You get the lead", "body": "RingByRing captures the caller's details and sends them straight to you, so you never lose a job to a missed call." }
+  ],
+  "global_positioning_line": "Gap coverage, not replacement. RingByRing catches the calls your team can't — after hours, weekends, and overflow.",
+  "footer_disclaimers": [
+    "Pricing and availability current as of 2026."
+  ],
+  "style_rules": {
+    "tone": "plain, direct, concrete",
+    "avoid": ["em dashes", "AI-cadence phrasing", "fabricated statistics", "claims not in pricing.json guardrails"],
+    "cta_repeat": "Demo call CTA appears at top (hero) and again near pricing."
+  },
+  "launch_recommendation": {
+    "trades_first": ["hvac", "plumber", "general-contractor"],
+    "cities_first": ["hamilton", "burlington", "oakville", "mississauga", "brampton"],
+    "page_count_v1": "3 trades x 5 cities = 15 pages",
+    "scale_rule": "Expand only trades/cities that show Search Console impressions or ad conversions. Signal first, scale second."
+  }
+}
