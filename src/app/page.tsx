@@ -1,9 +1,20 @@
 'use client';
 
 import { Phone, Clock, DollarSign, Zap, CheckCircle, ArrowRight, Play, MessageSquare, Calendar, PhoneForwarded } from 'lucide-react';
+import { OrganizationSchema, ServiceSchema, WebSiteSchema, FAQSchema } from '@/components/seo';
 
 const DEMO_PHONE = '+13479192658';
 const DEMO_PHONE_DISPLAY = '(347) 919-2658';
+
+// Homepage FAQs for schema markup
+const homepageFAQs = [
+  { q: "Does it really sound human?", a: "Yes — RingByRing uses the latest AI voice technology with sub-second response times. Callers regularly don't realize they're talking to AI." },
+  { q: "How do I connect it to my phone?", a: "You forward your existing business line to your RingByRing number. You can forward all calls, or just calls when you're busy/after-hours. Works with any carrier." },
+  { q: "Can it actually book appointments?", a: "Yes. RingByRing connects to Google Calendar and other scheduling tools. It checks your availability and books jobs directly, then texts you the confirmation." },
+  { q: "What if the caller has a complex question?", a: "RingByRing handles most questions using the information you provide during setup. For anything outside its scope, it takes a message and notifies you immediately." },
+  { q: "Is there a contract?", a: "No contracts, no commitments. Pay month-to-month and cancel anytime. We also offer a 7-day money-back guarantee if you're not satisfied." },
+  { q: "What's included in the $149/month?", a: "Everything: unlimited calls, 24/7 coverage, appointment booking, bilingual support, call recordings, transcripts, and notifications. No hidden fees." },
+];
 
 export default function Home() {
   const handleDemoCall = () => {
@@ -15,6 +26,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Schema Markup for SEO */}
+      <OrganizationSchema />
+      <ServiceSchema />
+      <WebSiteSchema />
+      <FAQSchema faqs={homepageFAQs} />
+
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

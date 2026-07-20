@@ -4,6 +4,7 @@ import { Phone, CheckCircle, Clock, DollarSign, MapPin, ChevronDown } from 'luci
 import { useState } from 'react';
 import type { Trade, City } from '@/types';
 import { DemoCTA } from './DemoCTA';
+import { TradeCitySchema } from './Schema';
 import metaData from '@/data/meta.json';
 
 interface TradeCityPageProps {
@@ -14,6 +15,9 @@ interface TradeCityPageProps {
 export function TradeCityPage({ trade, city }: TradeCityPageProps) {
   return (
     <div className="min-h-screen bg-white">
+      {/* Schema Markup for SEO */}
+      <TradeCitySchema trade={trade} city={city} />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white">
         <div className="max-w-4xl mx-auto px-4 py-16 sm:py-24">
