@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "description": "Per-city geo layer for trade x city page generation. Launch set = Golden Horseshoe / Ontario, per the owned local-demand thesis. Expand based on Search Console signal, not ambition.",
+    "verification": "City names, regions, and area codes are [VERIFIED] (stable public geographic facts). Population tiers are [INFERRED] rough bands for copy tone only, not stated as precise stats on-page.",
+    "area_code_note": "Ontario uses overlay area codes; a city may have several. Listed codes are [VERIFIED] as serving the area. Do not present as the only code.",
+    "last_updated": "2026-06"
+  },
+  "cities": [
+    { "slug": "hamilton", "display_name": "Hamilton", "region": "Golden Horseshoe", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["Stoney Creek", "Dundas", "Ancaster", "Burlington"], "pop_tier": "large" },
+    { "slug": "burlington", "display_name": "Burlington", "region": "Golden Horseshoe", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["Oakville", "Hamilton", "Waterdown"], "pop_tier": "mid" },
+    { "slug": "oakville", "display_name": "Oakville", "region": "Golden Horseshoe", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["Burlington", "Mississauga", "Milton"], "pop_tier": "mid" },
+    { "slug": "mississauga", "display_name": "Mississauga", "region": "Greater Toronto Area", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["Brampton", "Oakville", "Toronto", "Milton"], "pop_tier": "large" },
+    { "slug": "brampton", "display_name": "Brampton", "region": "Greater Toronto Area", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["Mississauga", "Caledon", "Vaughan"], "pop_tier": "large" },
+    { "slug": "milton", "display_name": "Milton", "region": "Golden Horseshoe", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["Oakville", "Burlington", "Mississauga"], "pop_tier": "mid" },
+    { "slug": "st-catharines", "display_name": "St. Catharines", "region": "Niagara", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["Niagara Falls", "Thorold", "Welland"], "pop_tier": "mid" },
+    { "slug": "niagara-falls", "display_name": "Niagara Falls", "region": "Niagara", "province": "Ontario", "area_codes": ["905", "289", "365"], "nearby": ["St. Catharines", "Welland", "Fort Erie"], "pop_tier": "mid" },
+    { "slug": "guelph", "display_name": "Guelph", "region": "Wellington", "province": "Ontario", "area_codes": ["519", "226", "548"], "nearby": ["Cambridge", "Kitchener", "Fergus"], "pop_tier": "mid" },
+    { "slug": "kitchener", "display_name": "Kitchener", "region": "Waterloo Region", "province": "Ontario", "area_codes": ["519", "226", "548"], "nearby": ["Waterloo", "Cambridge", "Guelph"], "pop_tier": "large" },
+    { "slug": "cambridge", "display_name": "Cambridge", "region": "Waterloo Region", "province": "Ontario", "area_codes": ["519", "226", "548"], "nearby": ["Kitchener", "Guelph", "Waterloo"], "pop_tier": "mid" },
+    { "slug": "brantford", "display_name": "Brantford", "region": "Southwestern Ontario", "province": "Ontario", "area_codes": ["519", "226", "548"], "nearby": ["Paris", "Hamilton", "Cambridge"], "pop_tier": "mid" }
+  ]
+}

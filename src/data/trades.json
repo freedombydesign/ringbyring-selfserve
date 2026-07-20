@@ -1,0 +1,162 @@
+{
+  "_meta": {
+    "description": "Per-trade content for programmatic SEO pages. Each trade reused across all cities. This is the content moat: write these well, keep them true.",
+    "verification": "Job-value ranges are [INFERRED] unless Ruth confirms regional sources. Pain scenarios [VERIFIED] where marked in trade-pain-research.md.",
+    "last_updated": "2026-06"
+  },
+  "trades": [
+    {
+      "slug": "plumber",
+      "display_name": "Plumber",
+      "display_plural": "plumbers",
+      "pain_headline": "A burst pipe at 9pm doesn't leave a voicemail. It calls the next plumber.",
+      "pain_body": "Emergency plumbing calls come at the worst hours, and the caller needs help immediately. If you're under a sink or asleep, that call goes unanswered and they dial the next name on the list. The job you lost was never a maybe; it was a customer ready to pay tonight.",
+      "roi_line": "One captured after-hours emergency call can cover RingByRing for half a year.",
+      "job_value_note": "INFERRED: ~$300-$800 routine, higher for emergencies",
+      "demo_greeting": "Thanks for calling, this is the after-hours line. Is this a plumbing emergency or are you looking to book a service visit?",
+      "faqs": [
+        { "q": "Can RingByRing handle after-hours emergency calls?", "a": "Yes. RingByRing answers around the clock, captures the caller's details and the nature of the emergency, and gets the message to you immediately so you can prioritize urgent jobs." },
+        { "q": "What happens if I'm already on a call?", "a": "RingByRing picks up the overflow. When your line is busy, calls forward to RingByRing instead of going to voicemail, so a second caller still reaches a real-sounding answer." },
+        { "q": "Will callers know it's an AI?", "a": "RingByRing answers naturally and professionally. The goal is that a caller reaches a helpful voice instead of voicemail." }
+      ]
+    },
+    {
+      "slug": "hvac",
+      "display_name": "HVAC Contractor",
+      "display_plural": "HVAC contractors",
+      "pain_headline": "When the AC dies in July, the first contractor to answer gets the job.",
+      "pain_body": "Heatwaves and cold snaps create call spikes exactly when you're slammed on existing jobs. Every call that hits voicemail during peak season is a customer who's already dialing the next company while they sweat. Seasonal overflow is where HVAC businesses quietly bleed revenue.",
+      "roi_line": "Miss one $3,500 install and you've lost nearly two years of what RingByRing costs.",
+      "job_value_note": "VERIFIED: ~$3,500 cited for significant repair/install",
+      "demo_greeting": "Thanks for calling. Are you reaching out about a no-cooling or no-heating issue, or scheduling routine service?",
+      "faqs": [
+        { "q": "Can RingByRing handle seasonal call spikes?", "a": "Yes. RingByRing answers unlimited simultaneous-feeling overflow, so a heatwave rush doesn't send your callers to voicemail. Every caller gets answered and captured." },
+        { "q": "Does RingByRing work after hours and weekends?", "a": "Yes. RingByRing covers exactly the gaps a human front desk can't: evenings, weekends, and the busy hours when nobody can get to the phone." },
+        { "q": "How fast can I get set up before the season hits?", "a": "Self-serve setup takes about 15 minutes: sign up, tell RingByRing about your business, forward your number, and you're live." }
+      ]
+    },
+    {
+      "slug": "electrician",
+      "display_name": "Electrician",
+      "display_plural": "electricians",
+      "pain_headline": "A sparking panel can't wait for a callback.",
+      "pain_body": "Electrical calls often carry urgency and a little fear. The caller wants immediate reassurance and a booked visit. If they hit voicemail, that anxiety sends them straight to the next electrician who picks up.",
+      "roi_line": "One captured service call typically covers a month or more of RingByRing.",
+      "job_value_note": "INFERRED: ~$200-$1,200 typical service",
+      "demo_greeting": "Thanks for calling. Is this an urgent electrical issue, or are you booking a service appointment?",
+      "faqs": [
+        { "q": "Can RingByRing book service appointments?", "a": "RingByRing captures the caller's details and request so you can confirm fast." },
+        { "q": "What about after-hours safety calls?", "a": "RingByRing answers 24/7, takes down the urgent details, and routes them to you so genuine emergencies don't sit in a voicemail box overnight." }
+      ]
+    },
+    {
+      "slug": "roofer",
+      "display_name": "Roofer",
+      "display_plural": "roofers",
+      "pain_headline": "After a storm, homeowners call five roofers. The first to answer wins.",
+      "pain_body": "Storm damage creates a sudden surge of high-value leads, all calling at once, all calling several roofers. Whoever answers first books the inspection. Voicemail during a storm surge is lost work at the exact moment demand peaks.",
+      "roi_line": "A single captured roof job can cover years of RingByRing.",
+      "job_value_note": "INFERRED: high, $5,000+ for replacement",
+      "demo_greeting": "Thanks for calling. Are you reaching out about storm or leak damage, or scheduling a roof inspection?",
+      "faqs": [
+        { "q": "Can RingByRing handle a post-storm call surge?", "a": "Yes. When a storm drives a spike of calls, RingByRing answers the overflow so high-value leads don't roll to voicemail and over to your competitor." },
+        { "q": "Will RingByRing capture enough detail to follow up?", "a": "RingByRing collects the caller's name, number, address, and the nature of the damage, then sends it to you so you can prioritize inspections." }
+      ]
+    },
+    {
+      "slug": "landscaper",
+      "display_name": "Landscaper",
+      "display_plural": "landscapers",
+      "pain_headline": "You're on the mower all day. Your phone is going to voicemail all day.",
+      "pain_body": "Landscaping is fieldwork. The owner is on equipment, crews are spread out, and nobody's free to answer. Seasonal inquiries and recurring-contract leads slip away simply because there's no one at the phone during working hours.",
+      "roi_line": "One recurring maintenance contract captured can pay for RingByRing many times over.",
+      "job_value_note": "INFERRED: lower per-job, recurring-contract upside",
+      "demo_greeting": "Thanks for calling. Are you looking for a quote on lawn care, landscaping, or ongoing maintenance?",
+      "faqs": [
+        { "q": "Can RingByRing answer while my crew is in the field?", "a": "That's exactly the gap RingByRing covers. While you're on the equipment, RingByRing answers, captures the lead, and sends it to you for follow-up." },
+        { "q": "Does RingByRing handle quote requests?", "a": "RingByRing gathers the details of what the caller needs so you have everything to quote when you're back from the job." }
+      ]
+    },
+    {
+      "slug": "general-contractor",
+      "display_name": "General Contractor",
+      "display_plural": "general contractors",
+      "pain_headline": "A renovation inquiry that hits voicemail is a bid you never got to make.",
+      "pain_body": "High-value project calls arrive while you're on-site, hands full. A slow response signals to the homeowner that you're hard to reach, and they move on to the next contractor. The bigger the project, the more a missed first call costs.",
+      "roi_line": "Even one captured project inquiry dwarfs a year of what RingByRing costs.",
+      "job_value_note": "INFERRED: very high, $10k-$100k+ projects",
+      "demo_greeting": "Thanks for calling. Are you reaching out about a renovation or build project? I can take the details and have someone follow up.",
+      "faqs": [
+        { "q": "Can RingByRing handle project inquiry calls while I'm on a job?", "a": "Yes. RingByRing answers when you can't, captures the project details, and sends them over so you can follow up before the lead cools." },
+        { "q": "Is this useful for a small renovation business?", "a": "Especially so. When it's just you and a crew, there's no front desk. RingByRing is the coverage that keeps high-value inquiries from going to voicemail." }
+      ]
+    },
+    {
+      "slug": "dentist",
+      "display_name": "Dental Practice",
+      "display_plural": "dental practices",
+      "pain_headline": "A new patient who books after hours books wherever answers first.",
+      "pain_body": "Consultation and booking requests come in evenings and weekends when the front desk is closed. By the time you open, that patient has already booked with the practice that picked up. After-hours is where new-patient revenue leaks.",
+      "roi_line": "A single captured new patient can be worth far more than a year of RingByRing.",
+      "job_value_note": "VERIFIED: new-patient LTV high; single cleaning ~$200, LTV far higher",
+      "demo_greeting": "Thank you for calling. Are you a new patient looking to book, or calling about an existing appointment?",
+      "faqs": [
+        { "q": "Can RingByRing book new patients after hours?", "a": "RingByRing captures new-patient booking requests around the clock so they reach you instead of your competitor." },
+        { "q": "Does RingByRing cover lunch and overflow?", "a": "Yes. When the front desk is on lunch or swamped, RingByRing answers the overflow so booking calls don't drop." }
+      ]
+    },
+    {
+      "slug": "veterinary",
+      "display_name": "Veterinary Clinic",
+      "display_plural": "veterinary clinics",
+      "pain_headline": "A worried pet owner at 10pm calls whoever picks up.",
+      "pain_body": "After-hours calls about a sick pet carry real emotional urgency. If the caller reaches voicemail, they keep dialing until a clinic answers. A calm, immediate response captures both the patient and the relationship.",
+      "roi_line": "One captured new client and the care relationship that follows outweighs RingByRing's cost.",
+      "job_value_note": "INFERRED: visit plus ongoing care relationship",
+      "demo_greeting": "Thank you for calling. Is your pet experiencing an emergency right now, or are you booking an appointment?",
+      "faqs": [
+        { "q": "Can RingByRing triage after-hours pet calls?", "a": "RingByRing answers calmly, captures the situation and the owner's details, and routes urgent calls to you." },
+        { "q": "Does this replace my front desk?", "a": "No. RingByRing covers the gaps: after hours, weekends, and overflow when the desk is busy. Your team stays; RingByRing catches what they can't." }
+      ]
+    },
+    {
+      "slug": "chiropractor",
+      "display_name": "Chiropractor",
+      "display_plural": "chiropractors",
+      "pain_headline": "Every missed booking call is a recurring patient you didn't keep.",
+      "pain_body": "Chiropractic runs on appointments and repeat visits. When the front desk is mid-adjustment and the phone rings, that booking call can roll to voicemail and the patient books elsewhere. Recurring revenue is built on calls you actually answer.",
+      "roi_line": "One captured recurring patient covers RingByRing well beyond a single month.",
+      "job_value_note": "INFERRED: recurring appointment stream",
+      "demo_greeting": "Thanks for calling. Are you booking a new appointment or following up on an existing one?",
+      "faqs": [
+        { "q": "Can RingByRing handle booking calls during treatment hours?", "a": "Yes. When your team is with patients, RingByRing answers the overflow and captures booking requests so they don't slip away." }
+      ]
+    },
+    {
+      "slug": "med-spa",
+      "display_name": "Med Spa",
+      "display_plural": "med spas",
+      "pain_headline": "Booking calls during treatments shouldn't go to voicemail.",
+      "pain_body": "When your team is mid-treatment, the phone still rings with high-intent booking calls. Those callers comparison-shop; if you don't answer, the next spa does. Overflow and after-hours coverage protects bookings you've already earned the interest for.",
+      "roi_line": "A single captured treatment booking can cover a month or more of RingByRing.",
+      "job_value_note": "INFERRED: per-treatment plus repeat-client upside",
+      "demo_greeting": "Thank you for calling. Are you booking a treatment or asking about our services?",
+      "faqs": [
+        { "q": "Can RingByRing answer when my staff is with clients?", "a": "Yes. RingByRing covers overflow and after-hours so booking calls are captured instead of lost during treatments." }
+      ]
+    },
+    {
+      "slug": "law-firm",
+      "display_name": "Law Firm",
+      "display_plural": "law firms",
+      "pain_headline": "A missed intake call is a high-value case that walks to the next firm.",
+      "pain_body": "Legal intake is time-sensitive. Someone calling about an injury or an urgent matter wants to speak to someone now. If the call hits voicemail, that potential case calls the next firm on their search. Intake calls are too valuable to miss.",
+      "roi_line": "A single captured case can be worth more than years of RingByRing.",
+      "job_value_note": "INFERRED: very high per case",
+      "demo_greeting": "Thank you for calling. Are you a new client seeking a consultation, or following up on an existing matter?",
+      "faqs": [
+        { "q": "Can RingByRing handle legal intake?", "a": "RingByRing captures caller details and the nature of the matter for fast follow-up." }
+      ]
+    }
+  ]
+}

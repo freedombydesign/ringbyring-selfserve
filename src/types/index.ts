@@ -121,3 +121,53 @@ export interface CarrierInstructions {
   deactivate_code: string;
   instructions: string[];
 }
+
+// ===========================================
+// Programmatic SEO Types (Trade x City pages)
+// ===========================================
+
+export interface TradeFAQ {
+  q: string;
+  a: string;
+}
+
+export interface Trade {
+  slug: string;
+  display_name: string;
+  display_plural: string;
+  pain_headline: string;
+  pain_body: string;
+  roi_line: string;
+  job_value_note: string;
+  demo_greeting: string;
+  faqs: TradeFAQ[];
+}
+
+export interface TradesData {
+  _meta: {
+    description: string;
+    verification: string;
+    last_updated: string;
+  };
+  trades: Trade[];
+}
+
+export interface City {
+  slug: string;
+  display_name: string;
+  region: string;
+  province: string;
+  area_codes: string[];
+  nearby: string[];
+  pop_tier: 'small' | 'mid' | 'large';
+}
+
+export interface CitiesData {
+  _meta: {
+    description: string;
+    verification: string;
+    area_code_note: string;
+    last_updated: string;
+  };
+  cities: City[];
+}
