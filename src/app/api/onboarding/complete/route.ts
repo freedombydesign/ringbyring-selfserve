@@ -17,7 +17,7 @@ export async function POST() {
 
     // Get current config
     const { data: config, error: configError } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .select('*')
       .eq('customer_id', user.id)
       .single();
@@ -68,7 +68,7 @@ export async function POST() {
 
     // Update config with provisioned number
     const { error: updateError } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .update({
         twilio_number: phoneNumber,
         twilio_number_sid: phoneSid,
@@ -87,7 +87,7 @@ export async function POST() {
 
     // Update onboarding progress
     await supabase
-      .from('onboarding_progress')
+      .from('rbr_onboarding_progress')
       .update({
         current_step: 5,
         completed_steps: [1, 2, 3, 4],

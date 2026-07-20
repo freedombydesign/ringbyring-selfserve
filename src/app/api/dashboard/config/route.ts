@@ -15,7 +15,7 @@ export async function GET() {
     }
 
     const { data: config, error } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .select('*')
       .eq('customer_id', user.id)
       .single();
@@ -78,7 +78,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const { data: config, error } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .update(filteredUpdates)
       .eq('customer_id', user.id)
       .select()

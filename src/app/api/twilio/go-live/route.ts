@@ -16,7 +16,7 @@ export async function POST() {
 
     // Get current config
     const { data: config, error: configError } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .select('*')
       .eq('customer_id', user.id)
       .single();
@@ -38,7 +38,7 @@ export async function POST() {
 
     // Update status to live
     const { error: updateError } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .update({
         status: 'live',
         setup_completed_at: new Date().toISOString(),
@@ -51,7 +51,7 @@ export async function POST() {
 
     // Update onboarding progress
     await supabase
-      .from('onboarding_progress')
+      .from('rbr_onboarding_progress')
       .update({
         current_step: 6,
         completed_steps: [1, 2, 3, 4, 5, 6],

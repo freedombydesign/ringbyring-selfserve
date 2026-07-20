@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
       if (user) {
         const { data: config } = await supabase
-          .from('business_configs')
+          .from('rbr_business_configs')
           .select('status')
           .eq('customer_id', user.id)
           .single();

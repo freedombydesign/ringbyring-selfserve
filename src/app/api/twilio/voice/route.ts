@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     // Look up config by the Twilio number that was dialed
     const { data: configResult, error } = await supabase.rpc(
-      'get_config_by_twilio_number',
+      'rbr_get_config_by_twilio_number',
       { phone_number: to }
     );
 
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     const config = configResult[0];
 
     // Log the call start
-    await supabase.from('call_logs').insert({
+    await supabase.from('rbr_call_logs').insert({
       customer_id: config.customer_id,
       caller_phone: from,
       outcome: 'message_taken', // Will be updated by status callback

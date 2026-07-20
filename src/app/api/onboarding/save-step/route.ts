@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     // Get current progress
     const { data: currentProgress } = await supabase
-      .from('onboarding_progress')
+      .from('rbr_onboarding_progress')
       .select('*')
       .eq('customer_id', user.id)
       .single();
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
     // Upsert progress
     const { error: progressError } = await supabase
-      .from('onboarding_progress')
+      .from('rbr_onboarding_progress')
       .upsert(
         {
           customer_id: user.id,
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
 
     if (Object.keys(configUpdate).length > 0) {
       const { error: configError } = await supabase
-        .from('business_configs')
+        .from('rbr_business_configs')
         .update(configUpdate)
         .eq('customer_id', user.id);
 

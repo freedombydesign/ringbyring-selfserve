@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     // Get customer's config
     const { data: config, error: configError } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .select('*')
       .eq('customer_id', user.id)
       .single();
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
 
     // Update status to testing
     await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .update({ status: 'testing' })
       .eq('customer_id', user.id);
 
@@ -77,7 +77,7 @@ export async function GET(request: NextRequest) {
 
   if (customerId) {
     const { data } = await (await supabase)
-      .from('business_configs')
+      .from('rbr_business_configs')
       .select('*')
       .eq('customer_id', customerId)
       .single();

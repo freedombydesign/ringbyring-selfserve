@@ -16,21 +16,21 @@ export async function GET() {
 
     // Get customer data
     const { data: customer } = await supabase
-      .from('customers')
+      .from('rbr_customers')
       .select('*')
       .eq('id', user.id)
       .single();
 
     // Get business config
     const { data: config } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .select('*')
       .eq('customer_id', user.id)
       .single();
 
     // Get onboarding progress
     const { data: progress } = await supabase
-      .from('onboarding_progress')
+      .from('rbr_onboarding_progress')
       .select('*')
       .eq('customer_id', user.id)
       .single();

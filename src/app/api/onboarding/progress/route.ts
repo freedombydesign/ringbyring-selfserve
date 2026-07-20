@@ -16,7 +16,7 @@ export async function GET() {
 
     // Get onboarding progress
     const { data: progress, error: progressError } = await supabase
-      .from('onboarding_progress')
+      .from('rbr_onboarding_progress')
       .select('*')
       .eq('customer_id', user.id)
       .single();
@@ -28,7 +28,7 @@ export async function GET() {
 
     // Get business config (may have partial data)
     const { data: config } = await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .select('*')
       .eq('customer_id', user.id)
       .single();

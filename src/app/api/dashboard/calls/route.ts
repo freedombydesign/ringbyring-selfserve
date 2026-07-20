@@ -21,13 +21,13 @@ export async function GET(request: NextRequest) {
 
     // Get total count
     const { count } = await supabase
-      .from('call_logs')
+      .from('rbr_call_logs')
       .select('*', { count: 'exact', head: true })
       .eq('customer_id', user.id);
 
     // Get paginated calls
     const { data: calls, error } = await supabase
-      .from('call_logs')
+      .from('rbr_call_logs')
       .select('*')
       .eq('customer_id', user.id)
       .order('timestamp', { ascending: false })

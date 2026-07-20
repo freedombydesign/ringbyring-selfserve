@@ -112,7 +112,7 @@ async function handleCheckoutCompleted(
   }
 
   // Upsert customer record
-  const { error: customerError } = await supabase.from('customers').upsert(
+  const { error: customerError } = await supabase.from('rbr_customers').upsert(
     {
       id: userId,
       email: customerEmail,
@@ -130,7 +130,7 @@ async function handleCheckoutCompleted(
   }
 
   // Create initial business_configs record (pending_config status)
-  const { error: configError } = await supabase.from('business_configs').upsert(
+  const { error: configError } = await supabase.from('rbr_business_configs').upsert(
     {
       customer_id: userId,
       business_name: '', // Will be filled in wizard
@@ -149,7 +149,7 @@ async function handleCheckoutCompleted(
 
   // Create onboarding_progress record
   const { error: progressError } = await supabase
-    .from('onboarding_progress')
+    .from('rbr_onboarding_progress')
     .upsert(
       {
         customer_id: userId,
@@ -193,7 +193,7 @@ async function handleSubscriptionUpdated(
   const status = subscription.status;
 
   const { error } = await supabase
-    .from('customers')
+    .from('rbr_customers')
     .update({ subscription_status: status })
     .eq('stripe_subscription_id', stripeSubscriptionId);
 
@@ -213,7 +213,7 @@ async function handleSubscriptionDeleted(
 
   // Update customer status
   const { data: customer, error: customerError } = await supabase
-    .from('customers')
+    .from('rbr_customers')
     .update({ subscription_status: 'canceled' })
     .eq('stripe_subscription_id', stripeSubscriptionId)
     .select()
@@ -226,7 +226,7 @@ async function handleSubscriptionDeleted(
   // Pause the business config (stop answering calls)
   if (customer) {
     await supabase
-      .from('business_configs')
+      .from('rbr_business_configs')
       .update({ status: 'paused' })
       .eq('customer_id', customer.id);
   }

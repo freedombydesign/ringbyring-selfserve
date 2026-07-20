@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     // Look up config by Twilio number
     const { data: configResult } = await supabase.rpc(
-      'get_config_by_twilio_number',
+      'rbr_get_config_by_twilio_number',
       { phone_number: to }
     );
 
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
     // Update the most recent call log for this customer
     const { error: updateError } = await supabase
-      .from('call_logs')
+      .from('rbr_call_logs')
       .update({
         duration_seconds: parseInt(duration) || 0,
         recording_url: recordingUrl,

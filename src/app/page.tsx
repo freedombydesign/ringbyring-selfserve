@@ -1,6 +1,7 @@
 'use client';
 
-import { Phone, Clock, DollarSign, Zap, CheckCircle, ArrowRight, Play, MessageSquare, Calendar, PhoneForwarded } from 'lucide-react';
+import { useState } from 'react';
+import { Phone, Clock, DollarSign, Zap, CheckCircle, ArrowRight, Play, MessageSquare, Calendar, PhoneForwarded, X, Loader2 } from 'lucide-react';
 import { OrganizationSchema, ServiceSchema, WebSiteSchema, FAQSchema } from '@/components/seo';
 
 const DEMO_PHONE = '+13479192658';
@@ -17,11 +18,52 @@ const homepageFAQs = [
 ];
 
 export default function Home() {
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
   const handleDemoCall = () => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'demo_call_click', { location: 'hero' });
     }
     window.location.href = `tel:${DEMO_PHONE}`;
+  };
+
+  const handleGetStarted = () => {
+    setShowCheckoutModal(true);
+    setError('');
+  };
+
+  const handleCheckout = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to start checkout');
+      }
+
+      // Track conversion
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'begin_checkout', { email });
+      }
+
+      // Redirect to Stripe checkout
+      window.location.href = data.url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong');
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -241,13 +283,13 @@ export default function Home() {
                 ))}
               </ul>
 
-              <a
-                href="/onboarding"
+              <button
+                onClick={handleGetStarted}
                 className="inline-flex items-center justify-center gap-2 w-full bg-emerald-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-600 transition-colors"
               >
                 Get Started Now
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </button>
 
               <p className="text-gray-500 text-sm mt-4">
                 7-day money-back guarantee • No credit card required to try demo
@@ -353,13 +395,13 @@ export default function Home() {
             Try RingByRing risk-free. Set up in 15 minutes, cancel anytime.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/onboarding"
+            <button
+              onClick={handleGetStarted}
               className="inline-flex items-center justify-center gap-2 bg-white text-emerald-700 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-50 transition-colors shadow-lg"
             >
               Get Started — $149/mo
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </button>
             <button
               onClick={handleDemoCall}
               className="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-colors"
@@ -392,6 +434,71 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Checkout Modal */}
+      {showCheckoutModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
+            <button
+              onClick={() => setShowCheckoutModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="text-center mb-6">
+              <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="w-6 h-6 text-emerald-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Started with RingByRing</h3>
+              <p className="text-gray-600">Enter your email to begin checkout</p>
+            </div>
+
+            <form onSubmit={handleCheckout} className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@company.com"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
+                />
+              </div>
+
+              {error && (
+                <p className="text-red-600 text-sm">{error}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-emerald-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Redirecting to checkout...
+                  </>
+                ) : (
+                  <>
+                    Continue to Checkout
+                    <ArrowRight className="w-5 h-5" />
+                  </>
+                )}
+              </button>
+            </form>
+
+            <p className="text-center text-sm text-gray-500 mt-4">
+              $149/month • Cancel anytime • 7-day money-back guarantee
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
