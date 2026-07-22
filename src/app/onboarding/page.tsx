@@ -43,6 +43,12 @@ export default function OnboardingPage() {
           return;
         }
 
+        if (res.status === 403 && data.requires_payment) {
+          // No subscription - redirect to checkout
+          router.push('/');
+          return;
+        }
+
         if (data.progress && data.config) {
           // Restore state from saved progress
           const completedSteps = data.progress.completed_steps || [];

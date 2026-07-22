@@ -83,7 +83,7 @@ export function BusinessBasicsStep({
           type="text"
           id="business_name"
           placeholder="Bright Smile Dental"
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-900
             focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
         />
         {errors.business_name && (
@@ -107,7 +107,7 @@ export function BusinessBasicsStep({
           type="tel"
           id="business_phone"
           placeholder="(555) 123-4567"
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-900
             focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
         />
         {errors.business_phone && (
@@ -129,7 +129,7 @@ export function BusinessBasicsStep({
         <select
           {...register('industry')}
           id="industry"
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-900
             focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
         >
           {INDUSTRIES.map((ind) => (

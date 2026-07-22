@@ -122,7 +122,7 @@ export function ForwardingStep({
           type="checkbox"
           checked={confirmed}
           onChange={(e) => setConfirmed(e.target.checked)}
-          className="mt-0.5 h-4 w-4 text-emerald-600 rounded focus:ring-emerald-500"
+          className="mt-0.5 h-4 w-4 text-gray-900 text-emerald-600 rounded focus:ring-emerald-500"
         />
         <div>
           <span className="text-sm font-medium text-gray-900">

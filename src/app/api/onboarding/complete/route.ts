@@ -15,6 +15,20 @@ export async function POST() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // Check subscription status
+    const { data: customer, error: customerError } = await supabase
+      .from('rbr_customers')
+      .select('subscription_status')
+      .eq('id', user.id)
+      .single();
+
+    if (customerError || !customer || !['active', 'trialing'].includes(customer.subscription_status || '')) {
+      return NextResponse.json(
+        { error: 'Subscription required', requires_payment: true },
+        { status: 403 }
+      );
+    }
+
     // Get current config
     const { data: config, error: configError } = await supabase
       .from('rbr_business_configs')

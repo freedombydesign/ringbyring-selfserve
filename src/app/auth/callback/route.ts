@@ -11,12 +11,25 @@ export async function GET(request: NextRequest) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
-      // Check if user has completed onboarding
+      // Check if user has subscription and onboarding status
       const {
         data: { user },
       } = await supabase.auth.getUser();
 
       if (user) {
+        // Check subscription status
+        const { data: customer } = await supabase
+          .from('rbr_customers')
+          .select('subscription_status')
+          .eq('id', user.id)
+          .single();
+
+        // If no subscription or not active/trialing, redirect to landing page
+        if (!customer || !['active', 'trialing'].includes(customer.subscription_status || '')) {
+          return NextResponse.redirect(`${origin}/`);
+        }
+
+        // Check if user has completed onboarding
         const { data: config } = await supabase
           .from('rbr_business_configs')
           .select('status')
@@ -29,7 +42,7 @@ export async function GET(request: NextRequest) {
         }
       }
 
-      // Otherwise redirect to onboarding
+      // Otherwise redirect to onboarding (user has subscription but hasn't completed setup)
       return NextResponse.redirect(`${origin}${next}`);
     }
   }

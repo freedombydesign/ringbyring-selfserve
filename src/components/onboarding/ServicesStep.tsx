@@ -92,7 +92,7 @@ export function ServicesStep({
                 placeholder="Service name (e.g., Teeth Cleaning)"
                 value={service.name}
                 onChange={(e) => updateService(service.id, 'name', e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900
                   focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
               <input
@@ -100,7 +100,7 @@ export function ServicesStep({
                 placeholder="Price (optional)"
                 value={service.price || ''}
                 onChange={(e) => updateService(service.id, 'price', e.target.value)}
-                className="w-28 px-3 py-2 border border-gray-300 rounded-lg text-sm
+                className="w-28 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900
                   focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
               {services.length > 1 && (
@@ -143,7 +143,7 @@ export function ServicesStep({
                   placeholder="Question (e.g., What are your hours?)"
                   value={qa.question}
                   onChange={(e) => updateQA(qa.id, 'question', e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900
                     focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 />
                 <button
@@ -159,7 +159,7 @@ export function ServicesStep({
                 value={qa.answer}
                 onChange={(e) => updateQA(qa.id, 'answer', e.target.value)}
                 rows={2}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900
                   focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
             </div>

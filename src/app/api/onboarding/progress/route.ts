@@ -14,6 +14,28 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // Check subscription status
+    const { data: customer, error: customerError } = await supabase
+      .from('rbr_customers')
+      .select('subscription_status')
+      .eq('id', user.id)
+      .single();
+
+    if (customerError || !customer) {
+      return NextResponse.json(
+        { error: 'No active subscription', requires_payment: true },
+        { status: 403 }
+      );
+    }
+
+    // Only allow access if subscription is active or trialing
+    if (!['active', 'trialing'].includes(customer.subscription_status || '')) {
+      return NextResponse.json(
+        { error: 'Subscription required', requires_payment: true },
+        { status: 403 }
+      );
+    }
+
     // Get onboarding progress
     const { data: progress, error: progressError } = await supabase
       .from('rbr_onboarding_progress')

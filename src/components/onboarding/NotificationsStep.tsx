@@ -68,7 +68,7 @@ export function NotificationsStep({
           type="email"
           id="notification_email"
           placeholder="you@yourbusiness.com"
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-900
             focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
         />
         {errors.notification_email && (
@@ -94,7 +94,7 @@ export function NotificationsStep({
           type="tel"
           id="notification_sms"
           placeholder="(555) 123-4567"
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-900
             focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
         />
         <p className="mt-1 text-xs text-gray-500">
